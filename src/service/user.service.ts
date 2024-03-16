@@ -4,7 +4,6 @@ import User from "../models/user.model";
 import { UserInterface } from "../interface/user.interface";
 import { HttpException } from "../exceptions/httpException";
 import { JWT_SECRET_KEY, EXPIRY } from '../config/config';
-import { TokenData } from '../interface/auth.interface';
 
 function createToken(user:User):string{
     return jwt.sign( { sub:user.id, userName:user.full_name }, JWT_SECRET_KEY as string, {expiresIn:EXPIRY} )

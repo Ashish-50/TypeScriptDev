@@ -2,8 +2,9 @@ import express, {Application,NextFunction,Request,Response} from 'express';
 import { ORIGIN, PORT } from './config/config';
 import cors from 'cors';
 import './db'
-import Userrouter from './controller/authController';
+import Userrouter from './routes/user.route';
 import { ErrorMiddleware } from './middleware/error.middleware';
+import toDorouter from './routes/toDo.route';
 
 
 const app: Application = express();
@@ -19,7 +20,8 @@ app.use('/health',(req:Request, res:Response)=>{
     })
 })
 
-app.use('/api', Userrouter)
+app.use('/api', Userrouter);
+app.use("/todo", toDorouter);
 
 app.use(ErrorMiddleware)
 try {
